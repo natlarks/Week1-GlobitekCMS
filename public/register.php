@@ -7,10 +7,10 @@
   if (isset($_POST['Submit1'])){
 
     //Retrieves all of the fields from the form
-    $first_name=sanitize_text_field($_POST['first_name']);
-    $last_name=sanitize_text_field($_POST['last_name']);
-    $email=sanitize_email(sanitize_text_field($_POST['email']));
-    $username=sanitize_text_field($_POST['username']);
+    $first_name=urlencode ($_POST['first_name']);
+    $last_name=urlencode ($_POST['last_name']);
+    $email=urlencode ($_POST['email']);
+    $username=urlencode ($_POST['username']);
 
 
     //Checks if fields are blank
@@ -84,12 +84,12 @@
     //Outputs errors if there are any
     if (count($errors)!=0){
 
-      echo "Please fix the following errors: ";
-      echo "<ul>";
+      echo ("Please fix the following errors: ");
+      echo ("<ul>");
 
       //Iterates through errors and outputs them in a list
       foreach ($errors as $error){
-        echo "<li>".$error."</li>";
+        echo "<li>".htmlspecialchars($error)."</li>";
       }
 
       echo "</ul>";
